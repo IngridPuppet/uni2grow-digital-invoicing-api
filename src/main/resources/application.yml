@@ -1,0 +1,24 @@
+# To reflect your local environment, please override
+# relevant configuration entries in the uncommitted
+# 'application-default.yml' file.
+
+server:
+  port: 8092
+  error:
+    include-stacktrace: never
+
+spring:
+  application:
+    name: DigitalInvoice
+  datasource:
+    platform: mariadb
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/digital_invoicing
+    username: application-default.yml
+    password: application-default.yml
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  pathsToMatch: /api/**
