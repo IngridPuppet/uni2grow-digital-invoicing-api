@@ -28,7 +28,7 @@ public class Customer {
     @Column
     private String phone;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Address address;
 
     @OneToMany(mappedBy = "customer")

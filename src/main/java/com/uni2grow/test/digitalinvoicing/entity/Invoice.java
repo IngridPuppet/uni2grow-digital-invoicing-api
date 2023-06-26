@@ -19,23 +19,36 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true)
-    @GeneratedValue
-    private UUID number;
+    @Column(unique = true, nullable = false, updatable = false)
+    @Builder.Default
+    private UUID number = UUID.randomUUID();
 
     @Column
     @Positive
     private Double total;
 
-    @Column
+    @Column(nullable = false)
     private Instant issueDate;
 
     @ManyToOne
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     private Address billingAddress;
 
-    @OneToMany(mappedBy = "invoice")
+    @OneToMany(mappedBy = "invoice", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<RelInvoiceItem> relInvoiceItems;
+
+    /**
+     * Re-computes the invoice's total.
+     */
+    public void totalize() {
+        double sum = 0.0;
+
+        for (var relInvoiceItem: relInvoiceItems) {
+            sum += relInvoiceItem.getQuantity() * relInvoiceItem.getPriceOfRecord();
+        }
+
+        total = sum;
+    }
 }
