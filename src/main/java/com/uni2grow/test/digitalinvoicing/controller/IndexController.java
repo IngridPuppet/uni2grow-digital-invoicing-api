@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.Instant;
 
 @RestController
 public class IndexController {
@@ -14,8 +14,8 @@ public class IndexController {
     @GetMapping("/")
     public Object index() {
         return new Object() {
-            public final String app = appName;
-            public final Date clk = new Date();
+            private final String app = appName;
+            private final Instant clk = Instant.now();
         };
     }
 }

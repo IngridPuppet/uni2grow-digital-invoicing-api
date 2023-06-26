@@ -18,6 +18,7 @@ spring:
     password: application-default.yml
   jpa:
     hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
       ddl-auto: update
 
 springdoc:
