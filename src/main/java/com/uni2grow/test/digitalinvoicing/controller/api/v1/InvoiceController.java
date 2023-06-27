@@ -79,6 +79,10 @@ public class InvoiceController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is invalid.");
         }
 
+        // Throw 404 if resource does not exist
+
+        getOne(id);
+
         // Wipe current inventory
 
         relInvoiceItemRepository.deleteAll(getOne(id).getRelInvoiceItems());

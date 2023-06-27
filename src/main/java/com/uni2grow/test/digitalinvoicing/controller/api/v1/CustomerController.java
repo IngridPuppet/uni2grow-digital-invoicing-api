@@ -64,6 +64,9 @@ public class CustomerController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is invalid.");
         }
 
+        // Throws 404 if resource does not exist
+        getOne(id);
+
         return entityManager.merge(customer);
     }
 
