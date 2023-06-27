@@ -4,6 +4,10 @@ import com.uni2grow.test.digitalinvoicing.entity.Item;
 import com.uni2grow.test.digitalinvoicing.repository.ItemRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +38,14 @@ public class ItemController {
     public List<Item> getAll()
     {
         return itemRepository.findAll();
+    }
+
+    @GetMapping("/paginated")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Item> getPaginated(@PageableDefault(sort = {"name"}) Pageable paging,
+                                   @RequestParam(defaultValue = "") String key)
+    {
+        return itemRepository.findByKey(key, paging);
     }
 
     @PostMapping("")

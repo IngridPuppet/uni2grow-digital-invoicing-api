@@ -1,9 +1,13 @@
 package com.uni2grow.test.digitalinvoicing.controller.api.v1;
 
 import com.uni2grow.test.digitalinvoicing.entity.Customer;
+import com.uni2grow.test.digitalinvoicing.entity.Item;
 import com.uni2grow.test.digitalinvoicing.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +39,14 @@ public class CustomerController {
     public List<Customer> getAll()
     {
         return customerRepository.findAll();
+    }
+
+    @GetMapping("/paginated")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Customer> getPaginated(@PageableDefault(sort = {"name"}) Pageable paging,
+                                       @RequestParam(defaultValue = "") String key)
+    {
+        return customerRepository.findByKey(key, paging);
     }
 
     @PostMapping("")
