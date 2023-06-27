@@ -5,6 +5,10 @@ import com.uni2grow.test.digitalinvoicing.repository.InvoiceRepository;
 import com.uni2grow.test.digitalinvoicing.repository.RelInvoiceItemRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +42,15 @@ public class InvoiceController {
     public List<Invoice> getAll()
     {
         return invoiceRepository.findAll();
+    }
+
+    @GetMapping("/paginated")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Invoice> getPaginated(@PageableDefault(sort = {"issueDate"}, direction = Sort.Direction.DESC) Pageable paging,
+                                      @RequestParam(defaultValue = "") String key)
+    {
+        // Search by number or customer's name
+        return invoiceRepository.findByKey(key, paging);
     }
 
     @PostMapping("")
