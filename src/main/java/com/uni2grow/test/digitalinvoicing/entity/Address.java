@@ -39,4 +39,10 @@ public class Address {
     @OneToMany(mappedBy = "billingAddress")
     @JsonIgnore
     private List<Invoice> invoices;
+
+    @PreRemove
+    private void hookPreRemove() {
+        customers.forEach(customer -> customer.setAddress(null));
+        invoices.forEach(invoice -> invoice.setBillingAddress(null));
+    }
 }

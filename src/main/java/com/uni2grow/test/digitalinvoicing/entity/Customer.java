@@ -3,11 +3,7 @@ package com.uni2grow.test.digitalinvoicing.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
+import lombok.*;
 
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class Customer {
     @Column
     private String phone;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Address address;
 
     @OneToMany(mappedBy = "customer")
@@ -40,7 +36,7 @@ public class Customer {
     private List<Invoice> invoices;
 
     @PreRemove
-    private void preRemove() {
+    private void hookPreRemove() {
         invoices.forEach(invoice -> invoice.setCustomer(null));
     }
 }

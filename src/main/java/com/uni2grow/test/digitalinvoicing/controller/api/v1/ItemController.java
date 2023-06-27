@@ -1,7 +1,7 @@
 package com.uni2grow.test.digitalinvoicing.controller.api.v1;
 
-import com.uni2grow.test.digitalinvoicing.entity.Address;
-import com.uni2grow.test.digitalinvoicing.repository.AddressRepository;
+import com.uni2grow.test.digitalinvoicing.entity.Item;
+import com.uni2grow.test.digitalinvoicing.repository.ItemRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,61 +13,61 @@ import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping("/api/v1/addresses")
-public class AddressController {
+@RequestMapping("/api/v1/items")
+public class ItemController {
     @Autowired
     EntityManager entityManager;
 
     @Autowired
-    AddressRepository addressRepository;
+    ItemRepository itemRepository;
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Address getOne(@PathVariable Integer id)
+    public Item getOne(@PathVariable Integer id)
     {
-        return addressRepository.findById(id)
+        return itemRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public List<Address> getAll()
+    public List<Item> getAll()
     {
-        return addressRepository.findAll();
+        return itemRepository.findAll();
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Address store(@RequestBody Address address)
+    public Item store(@RequestBody Item item)
     {
-        if (address.getId() != null) {
+        if (item.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID must be null.");
         }
 
-        entityManager.persist(address);
-        entityManager.refresh(address);
+        entityManager.persist(item);
+        entityManager.refresh(item);
 
-        return address;
+        return item;
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Address update(@PathVariable Integer id, @RequestBody Address address)
+    public Item update(@PathVariable Integer id, @RequestBody Item item)
     {
-        if (address.getId() == null || !address.getId().equals(id)) {
+        if (item.getId() == null || !item.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ID is invalid.");
         }
 
-        return entityManager.merge(address);
+        return entityManager.merge(item);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Integer id)
     {
-        Address address = addressRepository.findById(id)
+        Item item = itemRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
 
-        addressRepository.delete(address);
+        itemRepository.delete(item);
     }
 }
