@@ -23,4 +23,5 @@ spring:
       ddl-auto: update
 
 springdoc:
-  pathsToMatch: /api/**
+    api-docs:
+      path: /api-docs
