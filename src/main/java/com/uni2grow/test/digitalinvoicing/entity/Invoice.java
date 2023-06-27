@@ -33,10 +33,10 @@ public class Invoice {
     @ManyToOne
     private Customer customer;
 
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne
     private Address billingAddress;
 
-    @OneToMany(mappedBy = "invoice", cascade=CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "invoice", cascade=CascadeType.MERGE, orphanRemoval = true)
     private List<RelInvoiceItem> relInvoiceItems;
 
     /**

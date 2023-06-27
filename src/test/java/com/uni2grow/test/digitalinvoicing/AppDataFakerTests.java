@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @SpringBootTest
 class AppDataFakerTests {
@@ -61,6 +58,8 @@ class AppDataFakerTests {
                 .address(buildAddress())
                 .build();
 
+            addressRepository.save(customer.getAddress());
+
             customers.add(customer);
         }
 
@@ -109,7 +108,11 @@ class AppDataFakerTests {
 
             // Persist to retrieve an identifier
 
-            addressRepository.save(invoice.getBillingAddress());
+            var address = Optional.ofNullable(invoice.getBillingAddress());
+            if (address.isPresent() && address.get().getId() == null) {
+                addressRepository.save(address.get());
+            }
+
             invoiceRepository.save(invoice);
 
             // Prepare the inventory of items

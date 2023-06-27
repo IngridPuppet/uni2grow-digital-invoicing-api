@@ -5,6 +5,7 @@
 server:
   port: 8092
   error:
+    include-message: always
     include-stacktrace: never
 
 spring:

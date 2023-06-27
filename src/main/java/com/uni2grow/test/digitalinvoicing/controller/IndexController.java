@@ -14,8 +14,8 @@ public class IndexController {
     @GetMapping("/")
     public Object index() {
         return new Object() {
-            private final String app = appName;
-            private final Instant clk = Instant.now();
+            public final String app = appName;
+            public final Instant clk = Instant.now();
         };
     }
 }
