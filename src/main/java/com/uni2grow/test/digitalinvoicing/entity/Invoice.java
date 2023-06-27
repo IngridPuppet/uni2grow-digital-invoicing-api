@@ -51,9 +51,4 @@ public class Invoice {
 
         total = sum;
     }
-
-    @PreUpdate
-    private void hookPreUpdate() {
-        relInvoiceItems.forEach(relInvoiceItem -> relInvoiceItem.setInvoice(this));
-    }
 }

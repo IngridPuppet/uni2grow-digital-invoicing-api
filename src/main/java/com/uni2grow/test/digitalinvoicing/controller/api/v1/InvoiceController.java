@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,7 +55,7 @@ public class InvoiceController {
             if (relInvoiceItem.getId() != null) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The inventory must be brand new.");
             }
-        };
+        }
 
         // Initial persist
 
