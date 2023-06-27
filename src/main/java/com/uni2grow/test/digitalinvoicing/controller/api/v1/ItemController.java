@@ -59,7 +59,9 @@ public class ItemController {
         }
 
         // Throws 404 if resource does not exist
-        getOne(id);
+        if (!itemRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
 
         return entityManager.merge(item);
     }

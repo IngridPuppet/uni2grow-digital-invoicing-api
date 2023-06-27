@@ -59,7 +59,9 @@ public class AddressController {
         }
 
         // Throws 404 if resource does not exist
-        getOne(id);
+        if (!addressRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
 
         return entityManager.merge(address);
     }

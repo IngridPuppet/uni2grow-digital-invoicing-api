@@ -81,7 +81,9 @@ public class InvoiceController {
 
         // Throw 404 if resource does not exist
 
-        getOne(id);
+        if (!invoiceRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
 
         // Wipe current inventory
 
