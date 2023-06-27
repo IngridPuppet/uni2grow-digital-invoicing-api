@@ -1,7 +1,6 @@
 package com.uni2grow.test.digitalinvoicing.controller.api.v1;
 
 import com.uni2grow.test.digitalinvoicing.entity.Customer;
-import com.uni2grow.test.digitalinvoicing.entity.Item;
 import com.uni2grow.test.digitalinvoicing.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
