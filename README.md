@@ -26,7 +26,7 @@ As part of a coding interview at Uni2Grow Cameroun SARL, this project builds a R
 
    ```json
    {
-     "app": "DigitalInvoice",
+     "app": "DigitalInvoicing",
      "clk": "2023-06-28T03:13:47.653265265Z"
    }
    ```

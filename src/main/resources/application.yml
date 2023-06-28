@@ -10,7 +10,7 @@ server:
 
 spring:
   application:
-    name: DigitalInvoice
+    name: DigitalInvoicing
   datasource:
     platform: mariadb
     driverClassName: org.mariadb.jdbc.Driver
