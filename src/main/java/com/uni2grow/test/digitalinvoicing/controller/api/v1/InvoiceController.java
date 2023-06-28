@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -72,6 +73,7 @@ public class InvoiceController {
 
         // Initial persist
 
+        invoice.setIssueDate(Instant.now());
         entityManager.persist(invoice);
         entityManager.refresh(invoice);
 
