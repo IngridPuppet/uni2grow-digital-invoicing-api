@@ -2,6 +2,7 @@ package com.uni2grow.test.digitalinvoicing.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.List;
@@ -26,7 +27,8 @@ public class Address {
     @Column
     private String state;
 
-    @Column
+    @Column(nullable = false)
+    @NotEmpty
     private String country;
 
     @Column

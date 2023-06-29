@@ -2,7 +2,8 @@
 
 ## Synopsis
 
-As part of a coding interview at Uni2Grow Cameroun SARL, this project builds a REST API that exposes invoicing capabilities.
+As part of a coding interview at Uni2Grow Cameroun SARL, this project builds a REST API that exposes invoicing
+capabilities.
 
 ## Guide
 
@@ -18,7 +19,8 @@ As part of a coding interview at Uni2Grow Cameroun SARL, this project builds a R
       password: toor
    ```
    
-2. Next, run the provided `AppDataFakerTests` class to populate the database with fake data so as to demonstrate operability.
+2. Next, run the provided `AppDataFakerTests` class to populate the database with fake data so as to demonstrate
+   operability. If you encounter errors resulting from duplicate entries, please re-try.
 
 3. Boot the application as per usage.
 
