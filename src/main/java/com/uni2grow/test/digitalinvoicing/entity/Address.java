@@ -22,6 +22,7 @@ public class Address {
     private String street;
 
     @Column(nullable = false)
+    @NotEmpty
     private String city;
 
     @Column
