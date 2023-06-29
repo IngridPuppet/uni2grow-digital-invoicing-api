@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,8 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     public List<Customer> getAll()
     {
-        return customerRepository.findAll();
+
+        return customerRepository.findAll(Sort.by("name"));
     }
 
     @GetMapping("/paginated")
