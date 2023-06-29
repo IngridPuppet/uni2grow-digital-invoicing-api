@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
-    @Query("SELECT e FROM Invoice e JOIN e.customer c " +
+    @Query("SELECT e FROM Invoice e LEFT JOIN e.customer c " +
            "WHERE CAST(e.number AS String) LIKE %?1% " +
            "OR c.name LIKE %?1% ")
     Page<Invoice> findByKey(String key, Pageable paging);
