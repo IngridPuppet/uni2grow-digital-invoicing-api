@@ -2,7 +2,7 @@ package com.uni2grow.test.digitalinvoicing.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 @Entity
@@ -29,6 +29,6 @@ public class RelInvoiceItem {
     // This property records the item's price
     // at the time of issuing the invoice
     @Column(nullable = false)
-    @Positive
+    @PositiveOrZero
     private Double priceOfRecord;
 }

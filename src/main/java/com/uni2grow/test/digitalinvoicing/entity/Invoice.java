@@ -1,7 +1,7 @@
 package com.uni2grow.test.digitalinvoicing.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 import java.time.Instant;
@@ -24,7 +24,7 @@ public class Invoice {
     private UUID number = UUID.randomUUID();
 
     @Column
-    @Positive
+    @PositiveOrZero
     private Double total;
 
     @Column(nullable = false)

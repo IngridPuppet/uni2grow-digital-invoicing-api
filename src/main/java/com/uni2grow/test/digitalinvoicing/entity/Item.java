@@ -3,7 +3,7 @@ package com.uni2grow.test.digitalinvoicing.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class Item {
     private String name;
 
     @Column
-    @Positive
+    @PositiveOrZero
     private Double price;
 
     @OneToMany(mappedBy = "item")
