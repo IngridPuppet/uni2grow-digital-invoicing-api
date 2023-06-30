@@ -1,7 +1,8 @@
-package com.uni2grow.test.digitalinvoicing;
+package com.uni2grow.test.digitalinvoicing.faker;
 
 import com.github.javafaker.Faker;
 import com.uni2grow.test.digitalinvoicing.entity.*;
+import com.uni2grow.test.digitalinvoicing.faker.util.CountryBuilder;
 import com.uni2grow.test.digitalinvoicing.repository.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ class AppDataFakerTests {
     InvoiceRepository invoiceRepository;
 
     @Test
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     void fakeData() {
         truncate();
 
@@ -149,7 +149,7 @@ class AppDataFakerTests {
             .street(faker.random().nextDouble() < 0.7 ? faker.address().streetAddress() : null)
             .city(faker.address().city())
             .state(faker.random().nextDouble() < 0.4 ? faker.address().state() : null)
-            .country(faker.address().country())
+            .country(CountryBuilder.build(faker))
             .zipCode(faker.random().nextDouble() < 0.4 ? faker.address().zipCode() : null)
             .build();
     }
